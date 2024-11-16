@@ -1,17 +1,25 @@
-package com.yourname.basicplugin;
+package com.yourname.utils;
 
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.ChatColor;
 
 public class CommandHandler implements CommandExecutor {
+    private final Main plugin;
+
+    public CommandHandler(Main plugin) {
+        this.plugin = plugin;
+    }
+
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (command.getName().equalsIgnoreCase("dc") || command.getName().equalsIgnoreCase("discord")) {
-            sender.sendMessage(ChatColor.AQUA + "" + ChatColor.BOLD + "Voici le lien vers notre discord: " + ChatColor.RESET + "https://discord.gg/yourserver");
+            String discordMessage = ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("messages.discord"));
+            sender.sendMessage(discordMessage);
         } else if (command.getName().equalsIgnoreCase("store") || command.getName().equalsIgnoreCase("s")) {
-            sender.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + "Voici le lien vers notre boutique: " + ChatColor.RESET + "https://shop.yourserver.com");
+            String storeMessage = ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("messages.store"));
+            sender.sendMessage(storeMessage);
         }
         return true;
     }
