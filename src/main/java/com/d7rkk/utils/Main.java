@@ -1,26 +1,35 @@
-package com.yourname.basicplugin;
+package com.yourname.utils;
 
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
+import java.io.File;
 
 public class Main extends JavaPlugin {
     @Override
     public void onEnable() {
-        getLogger().info("BasicPlugin is enabled!");
+        getLogger().info("Utils plugin is enabled!");
+        createConfig();
         registerCommands();
     }
 
     @Override
     public void onDisable() {
-        getLogger().info("BasicPlugin is disabled!");
+        getLogger().info("Utils plugin is disabled!");
+    }
+
+    private void createConfig() {
+        // Create the Utils folder and config.yml if not present
+        File configFile = new File(getDataFolder(), "config.yml");
+        if (!configFile.exists()) {
+            getConfig().options().copyDefaults(true);
+            saveDefaultConfig();
+            getLogger().info("Config file created in Utils folder.");
+        }
     }
 
     private void registerCommands() {
-        getCommand("dc").setExecutor(new CommandHandler());
-        getCommand("discord").setExecutor(new CommandHandler());
-        getCommand("store").setExecutor(new CommandHandler());
-        getCommand("s").setExecutor(new CommandHandler());
+        getCommand("dc").setExecutor(new CommandHandler(this));
+        getCommand("discord").setExecutor(new CommandHandler(this));
+        getCommand("store").setExecutor(new CommandHandler(this));
+        getCommand("s").setExecutor(new CommandHandler(this));
     }
 }
