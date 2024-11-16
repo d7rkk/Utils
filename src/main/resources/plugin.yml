@@ -1,6 +1,6 @@
-name: BasicPlugin
-version: 1.0
-main: com.yourname.basicplugin.Main
+name: Utils
+version: 1.x
+main: com.yourname.utils.Main
 api-version: 1.16
 commands:
   dc:
