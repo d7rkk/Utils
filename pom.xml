@@ -3,8 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.yourname</groupId>
     <artifactId>utils</artifactId>
-    <version>1.x</version> <!-- Adjust x once the plugin works -->
-
+    <version>1.1</version> <!-- Initial version attempt -->
     <name>Utils</name>
 
     <dependencies>
